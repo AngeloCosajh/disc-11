@@ -7,7 +7,7 @@ import { satisfies } from "semver";
 
 @DefineCommand({
     description: "Resume the music player",
-    name: "resume",
+    name: "riprendi",
     usage: "{prefix}riprendi"
 })
 export class ResumeCommand extends BaseCommand {
