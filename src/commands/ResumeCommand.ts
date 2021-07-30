@@ -8,7 +8,7 @@ import { satisfies } from "semver";
 @DefineCommand({
     description: "Resume the music player",
     name: "resume",
-    usage: "{prefix}resume"
+    usage: "{prefix}riprendi"
 })
 export class ResumeCommand extends BaseCommand {
     @isUserInTheVoiceChannel()
