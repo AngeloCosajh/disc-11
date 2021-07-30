@@ -9,7 +9,7 @@ import { IMessage } from "../../typings";
     aliases: ["loop", "music-repeat", "music-loop"],
     description: "Repeat current music or the queue",
     name: "repeti",
-    usage: "{prefix}repeat [all | one | disable]"
+    usage: "{prefix}ripeat [all | one | disable]"
 })
 export class RepeatCommand extends BaseCommand {
     @isUserInTheVoiceChannel()
