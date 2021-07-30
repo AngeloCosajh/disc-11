@@ -8,8 +8,8 @@ import { IMessage } from "../../typings";
 @DefineCommand({
     aliases: ["loop", "music-repeat", "music-loop"],
     description: "Repeat current music or the queue",
-    name: "repeti",
-    usage: "{prefix}ripeat [all | one | disable]"
+    name: "ripeti",
+    usage: "{prefix}ripeti [all | one | disable]"
 })
 export class RepeatCommand extends BaseCommand {
     @isUserInTheVoiceChannel()
