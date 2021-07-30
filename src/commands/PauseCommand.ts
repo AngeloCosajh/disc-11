@@ -6,8 +6,8 @@ import { IMessage } from "../../typings";
 
 @DefineCommand({
     description: "Pause the music player",
-    name: "pause",
-    usage: "{prefix}pause"
+    name: "pausa",
+    usage: "{prefix}pausa"
 })
 export class PauseCommand extends BaseCommand {
     @isUserInTheVoiceChannel()
