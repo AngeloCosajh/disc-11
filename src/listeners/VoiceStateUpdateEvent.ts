@@ -73,13 +73,13 @@ export class VoiceStateUpdateEvent extends BaseListener {
                 if (queue.lastVoiceStateUpdateMessageID !== null) queue.textChannel?.messages.fetch(queue.lastVoiceStateUpdateMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("VOICE_STATE_UPDATE_EVENT_ERR:", e));
                 queue.textChannel?.send(
                     createEmbed("error", `⏹ **|** **\`${duration}\`** sono passati e non c'è nessuno che si è unito al canale vocale, la coda si è cancellata.`)
-                        .setTitle("Queue Deleted")
+                        .setTitle("Coda eliminata")
                 ).catch(e => this.client.logger.error("VOICE_STATE_UPDATE_EVENT_ERR:", e));
             }, timeout);
             queue.textChannel?.send(
                 createEmbed("warn", "⏸ **|**Tutti sono usciti dal canale vocale. Per risparmiare risorse, la coda è stata messa in pausa. " +
                     `Se non c'è nessuno che si unisce al canale vocale nel prossimo **\`${duration}\`**, la coda verrà eliminata.`)
-                    .setTitle("Music Player Paused")
+                    .setTitle("Music Player in pausa")
             ).then(m => queue.lastVoiceStateUpdateMessageID = m.id).catch(e => this.client.logger.error("VOICE_STATE_UPDATE_EVENT_ERR:", e));
         } catch (e) { this.client.logger.error("VOICE_STATE_UPDATE_EVENT_ERR:", e); }
     }
