@@ -8,7 +8,7 @@ import { IMessage } from "../../typings";
 @DefineCommand({
     aliases: ["loop", "music-repeat", "music-loop"],
     description: "Repeat current music or the queue",
-    name: "repeat",
+    name: "repeti",
     usage: "{prefix}repeat [all | one | disable]"
 })
 export class RepeatCommand extends BaseCommand {
