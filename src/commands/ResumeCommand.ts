@@ -16,7 +16,7 @@ export class ResumeCommand extends BaseCommand {
     @isSameVoiceChannel()
     public execute(message: IMessage): any {
         if (message.guild?.queue?.playing) {
-            message.channel.send(createEmbed("error", "The music player is not paused")).catch(e => this.client.logger.error("RESUME_CMD_ERR:", e));
+            message.channel.send(createEmbed("error", "Il lettore musicale non è in pausa")).catch(e => this.client.logger.error("RESUME_CMD_ERR:", e));
         } else {
             message.guild!.queue!.playing = true;
             message.guild?.queue?.connection?.dispatcher.resume();
@@ -25,7 +25,7 @@ export class ResumeCommand extends BaseCommand {
                 message.guild?.queue?.connection?.dispatcher.pause();
                 message.guild?.queue?.connection?.dispatcher.resume();
             }
-            message.channel.send(createEmbed("info", "▶ **|** The music player has been resumed")).catch(e => this.client.logger.error("RESUME_CMD_ERR:", e));
+            message.channel.send(createEmbed("info", "▶ **|** Il lettore musicale è stato ripristinato")).catch(e => this.client.logger.error("RESUME_CMD_ERR:", e));
         }
     }
 }
