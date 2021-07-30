@@ -38,14 +38,14 @@ export class RepeatCommand extends BaseCommand {
         const modeEmoji = ["▶", "🔂", "🔁"];
         const mode = args[0] as string | undefined;
         if (mode === undefined) {
-            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** Current repeat mode is set to **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
+            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** La modalità di ripetizione corrente è impostata su **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
                 .catch(e => this.client.logger.error("REPEAT_CMD_ERR:", e));
         } else if (Object.keys(modes).includes(mode)) {
             message.guild!.queue!.loopMode = modes[mode];
-            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** The repeat mode has been set to **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
+            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** La modalità di ripetizione è stata impostata su **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
                 .catch(e => this.client.logger.error("REPEAT_CMD_ERR:", e));
         } else {
-            message.channel.send(createEmbed("error", `Invalid usage, use **\`${this.client.config.prefix}help ${this.meta.name}\`** for more information`))
+            message.channel.send(createEmbed("error", `Utilizzo non valido, usa **\`${this.client.config.prefix}help ${this.meta.name}\`** per ottenere informazioni`))
                 .catch(e => this.client.logger.error("REPEAT_CMD_ERR:", e));
         }
     }
