@@ -17,7 +17,7 @@ export function inhibit(func: ICommandComponent["execute"]) {
 
 export function isMusicPlaying(): any {
     return inhibit(message => {
-        if (message.guild?.queue === null) return message.channel.send(createEmbed("warn", "There is nothing playing"));
+        if (message.guild?.queue === null) return message.channel.send(createEmbed("warn", "Non c'è niente in riproduzione"));
     });
 }
 
@@ -27,7 +27,7 @@ export function isSameVoiceChannel(): any {
         const botVoiceChannel = message.guild.queue?.voiceChannel?.id ?? message.guild.me.voice.channel.id;
         if (message.member?.voice.channel?.id !== botVoiceChannel) {
             return message.channel.send(
-                createEmbed("warn", "You need to be in the same voice channel as mine")
+                createEmbed("warn", "Devi essere nel mio stesso canale vocale")
             );
         }
     });
@@ -37,7 +37,7 @@ export function isUserInTheVoiceChannel(): any {
     return inhibit(message => {
         if (!message.member?.voice.channel) {
             return message.channel.send(
-                createEmbed("warn", "Sorry, but you need to be in a voice channel to do that")
+                createEmbed("warn", "Mi dispiace, ma devi essere in un canale vocale per farlo")
             );
         }
     });
@@ -48,11 +48,11 @@ export function isValidVoiceChannel(): any {
         const voiceChannel = message.member?.voice.channel;
         if (voiceChannel?.id === message.guild?.me?.voice.channel?.id) return undefined;
         if (!voiceChannel?.joinable) {
-            return message.channel.send(createEmbed("error", "Sorry, but I need **\`CONNECT\`** permission to do this"));
+            return message.channel.send(createEmbed("error", "Mi dispiace, ma ho bisogno **\`CONNECT\`** del permesso per farlo"));
         }
         if (!voiceChannel.speakable) {
             voiceChannel.leave();
-            return message.channel.send(createEmbed("error", "Sorry, but I need **\`SPEAK\`** permission to do this"));
+            return message.channel.send(createEmbed("error", "Mi dispiace, ma ho bisogno **\`SPEAK\`** del permesso per farlo"));
         }
     });
 }
