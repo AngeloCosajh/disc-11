@@ -27,7 +27,7 @@ export class HelpCommand extends BaseCommand {
         } else {
             message.channel.send(
                 createEmbed("info", message.client.commands.filter(cmd => !cmd.meta.disable && cmd.meta.name !== "eval").map(c => `\`${c.meta.name}\``).join(" "))
-                    .setAuthor("Command List")
+                    .setAuthor("lista dei comandi")
                     .setThumbnail(message.client.user?.displayAvatarURL() as string)
                     .setFooter(`Usa ${message.client.config.prefix}help <command> per ottenere informazioni specifiche dei comandi!`, "https://raw.githubusercontent.com/zhycorp/disc-11/main/.github/images/info.png")
             ).catch(e => this.client.logger.error("HELP_CMD_ERR:", e));
