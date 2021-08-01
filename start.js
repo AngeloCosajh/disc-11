@@ -1,5 +1,6 @@
 const { execSync } = require("child_process");
 const http = require("http");
+const Discord = require('discord.js')
 
 const isThisGlitch = (
     process.env.PROJECT_DOMAIN !== undefined &&
@@ -29,3 +30,15 @@ function start(glitch = false) {
     }
     require("./dist/main.js");
 }
+
+
+client.on("guildCreate", async guild => {
+    let channelToSend;
+
+    guild.channels.cache.forEach(channel => {
+        if(channel.type === 'text' && !channelToSend && channel.permissionsFor(guild.me).has('SEND_MESSAGES')) channelToSend = channel;
+    })
+
+    if(!channelToSend) return;
+    channelToSend.send("Grazie per avermi aggiunto")
+})
