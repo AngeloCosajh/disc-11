@@ -30,7 +30,7 @@ export class VoiceStateUpdateEvent extends BaseListener {
             try {
                 if (queue.lastMusicMessageID !== null) queue.textChannel?.messages.fetch(queue.lastMusicMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("VOICE_STATE_UPDATE_EVENT_ERR:", e));
                 if (queue.lastVoiceStateUpdateMessageID !== null) queue.textChannel?.messages.fetch(queue.lastVoiceStateUpdateMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("VOICE_STATE_UPDATE_EVENT_ERR:", e));
-                this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} Disconnected from the voice channel at ${newState.guild.name}, the queue has been deleted.`);
+                this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} Scollegato dal canale vocale a ${newState.guild.name}, la coda è stata eliminata.`);
                 queue.textChannel?.send(createEmbed("error", "Sono stato disconnesso dal canale vocale, la coda è stata cancellata."))
                     .catch(e => this.client.logger.error("VOICE_STATE_UPDATE_EVENT_ERR:", e));
                 return newState.guild.queue = null;
@@ -95,7 +95,7 @@ export class VoiceStateUpdateEvent extends BaseListener {
                 queue.textChannel?.send(
                     createEmbed("info", `▶ **|** Qualcuno si è unito al canale vocale.\nNow riproducendo: **[${song!.title}](${song!.url})**`)
                         .setThumbnail(song!.thumbnail)
-                        .setTitle("Music Player Resumed")
+                        .setTitle("Music Player Ripresa")
                 ).then(m => queue.lastVoiceStateUpdateMessageID = m.id).catch(e => this.client.logger.error("VOICE_STATE_UPDATE_EVENT_ERR:", e));
                 newState.guild.queue!.playing = true;
                 newState.guild.queue?.connection?.dispatcher.resume();
