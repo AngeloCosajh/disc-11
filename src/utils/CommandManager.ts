@@ -26,7 +26,7 @@ export class CommandManager extends Collection<string, ICommandComponent> {
                     this.set(command.meta.name, command);
                     if (command.meta.disable === true) disabledCount++;
                 }
-                this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} A total of ${files.length} commands has been loaded`);
+                this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} Un totale di ${files.length} i comandi sono stati caricati`);
                 if (disabledCount !== 0) this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} ${disabledCount} out of ${files.length} commands is disabled`);
             })
             .catch(err => this.client.logger.error("CMD_LOADER_ERR:", err));
@@ -46,7 +46,7 @@ export class CommandManager extends Collection<string, ICommandComponent> {
             const expirationTime = timestamps.get(message.author.id)! + cooldownAmount;
             if (now < expirationTime) {
                 const timeLeft = (expirationTime - now) / 1000;
-                message.channel.send(createEmbed("warn", `<@${message.author.id}>, please wait **\`${timeLeft.toFixed(1)}\`** of cooldown time`)).then(msg => {
+                message.channel.send(createEmbed("warn", `<@${message.author.id}>, attendere prego **\`${timeLeft.toFixed(1)}\`** del tempo di raffreddamento`)).then(msg => {
                     msg.delete({ timeout: 3500 }).catch(e => this.client.logger.error("CMD_HANDLER_ERR:", e));
                 }).catch(e => this.client.logger.error("CMD_HANDLER_ERR:", e));
                 return undefined;
@@ -63,7 +63,7 @@ export class CommandManager extends Collection<string, ICommandComponent> {
         } catch (e) {
             this.client.logger.error("CMD_HANDLER_ERR:", e);
         } finally {
-            this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} ${message.author.tag} is using ${command.meta.name} command on ${message.guild ? message.guild.name : "DM Channel"}`);
+            this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} ${message.author.tag} sta usando ${command.meta.name} comando su ${message.guild ? message.guild.name : "DM Channel"}`);
         }
     }
 
