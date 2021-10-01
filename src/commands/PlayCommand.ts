@@ -42,7 +42,7 @@ export class PlayCommand extends BaseCommand {
         if (/^https?:\/\/((www|music)\.youtube\.com|youtube.com)\/playlist(.*)$/.exec(url)) {
             try {
                 const id = resolveYTPlaylistID(url);
-                if (!id) return message.channel.send(createEmbed("error", "Invalid YouTube Playlist URL"));
+                if (!id) return message.channel.send(createEmbed("error", "URL playlist YouTube non valido"));
                 const playlist = await this.client.youtube.getPlaylist(id);
                 const videos = await playlist.getVideos();
                 let skippedVideos = 0;
@@ -206,7 +206,7 @@ export class PlayCommand extends BaseCommand {
             if (serverQueue.lastMusicMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastMusicMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
             if (serverQueue.lastVoiceStateUpdateMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastVoiceStateUpdateMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
             serverQueue.textChannel?.send(
-                createEmbed("info", `⏹ **|** The music has ended, use **\`${guild.client.config.prefix}play\`** to play some music`)
+                createEmbed("info", `⏹ **|** La musica è finita, usa **\`${guild.client.config.prefix}play\`** per riprodurre un po' di musica`)
             ).catch(e => this.client.logger.error("PLAY_ERR:", e));
             disconnectTimer = setTimeout(() => {
                 serverQueue.connection?.disconnect();
