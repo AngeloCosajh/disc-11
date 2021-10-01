@@ -18,7 +18,7 @@ export class LyricsCommand extends BaseCommand {
         } else if (song) {
             await this.sendLyrics(message, song);
         } else {
-            message.channel.send(createEmbed("error", "There is nothing playing or no query was provided")).catch(e => this.client.logger.error("LYRICS_CMD_ERR:", e));
+            message.channel.send(createEmbed("error", "Non c'è niente in riproduzione o non è stata fornita alcuna query")).catch(e => this.client.logger.error("LYRICS_CMD_ERR:", e));
         }
     }
 
@@ -29,7 +29,7 @@ export class LyricsCommand extends BaseCommand {
             .then(data => {
                 if (data.error) {
                     return message.channel.send(
-                        createEmbed("error", `Failed to fetch lyrics for **${song}**`)
+                        createEmbed("error", `Impossibile recuperare i testi per **${song}**`)
                     );
                 }
                 let lyrics: string = data.lyrics;
