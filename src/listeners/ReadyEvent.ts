@@ -6,9 +6,9 @@ import { Presence } from "discord.js";
 export class ReadyEvent extends BaseListener {
     public execute(): void {
         this.client.logger.info(
-            `${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} I'm ready to serve ${this.client.guilds.cache.size} guilds ` +
-            `with ${this.client.channels.cache.filter(c => c.type === "text").size} text channels and ` +
-            `${this.client.channels.cache.filter(c => c.type === "voice").size} voice channels`
+            `${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} Sono pronto a servire ${this.client.guilds.cache.size} guilds ` +
+            `insieme a ${this.client.channels.cache.filter(c => c.type === "text").size} canali di testo e ` +
+            `${this.client.channels.cache.filter(c => c.type === "voice").size} canali vocali`
         );
         this.doPresence();
     }
@@ -17,7 +17,7 @@ export class ReadyEvent extends BaseListener {
         this.updatePresence()
             .then(() => setInterval(() => this.updatePresence(), 30 * 1000))
             .catch(e => {
-                if (e.message === "Shards are still being spawned.") return this.doPresence();
+                if (e.message === "I frammenti vengono ancora generati.") return this.doPresence();
                 this.client.logger.error("DO_PRESENCE_ERR:", e);
             });
         return undefined;
