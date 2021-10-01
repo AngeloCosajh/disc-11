@@ -15,7 +15,7 @@ export class RemoveCommand extends BaseCommand {
     @isUserInTheVoiceChannel()
     @isSameVoiceChannel()
     public execute(message: IMessage, args: string[]): any {
-        if (isNaN(Number(args[0]))) return message.channel.send(createEmbed("error", `Invalid usage, use **\`${this.client.config.prefix}help ${this.meta.name}\`** for more information`));
+        if (isNaN(Number(args[0]))) return message.channel.send(createEmbed("error", `Utilizzo non valido, utilizzare **\`${this.client.config.prefix}help ${this.meta.name}\`** per maggiori informazioni`));
 
         const songs = message.guild!.queue!.songs.map(s => s);
         const currentSong = message.guild!.queue!.songs.first()!;
@@ -30,7 +30,7 @@ export class RemoveCommand extends BaseCommand {
         }
 
         message.channel.send(
-            createEmbed("info", `✅ Removed **[${song.title}](${song.url}})**`)
+            createEmbed("info", `✅ Rimosso **[${song.title}](${song.url}})**`)
                 .setThumbnail(song.thumbnail)
         ).catch(e => this.client.logger.error("REMOVE_COMMAND_ERR:", e));
     }
